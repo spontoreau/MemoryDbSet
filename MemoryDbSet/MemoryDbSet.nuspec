@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MemoryDbSet</id>
+    <version>1.0.0</version>
+    <title>MemoryDbSet</title>
+    <authors>Vtek</authors>
+    <owners>Vtek</owners>
+    <licenseUrl>https://github.com/Vtek/MemoryDbSet/blob/develop/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Vtek/MemoryDbSet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MemoryDbSet</description>
+    <copyright>Copyright 2016 Vtek</copyright>
+    <tags>MemoryDbSet</tags>
+    <dependencies>
+      <dependency id="EntityFramework" version="6.1.3" />
+      <dependency id="Newtonsoft.Json" version="6.0.8" />
+    </dependencies>
+  </metadata>
+  <files>
+  	<file src="bin\Release\MemoryDbSet.dll" target="lib\net45" />
+  </files>
+</package>

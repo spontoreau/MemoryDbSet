@@ -1,6 +1,7 @@
 # InMemoryDbSet
 
-A convention in memory DbSet implementation for EF6
+A convention in memory EntityFramework6 IDbSet implementation for your UT.
+The convention autoincrement Id property if entity have one.
 
 ## Licence
 

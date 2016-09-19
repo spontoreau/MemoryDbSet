@@ -84,7 +84,7 @@ namespace MemoryDbSet
 
             for(var i = 0; i < List.Count; i++)
             {
-                if(property.GetValue(List[i]).Equals(property.GetValue(List[i])))
+                if(property.GetValue(List[i]).Equals(property.GetValue(entity)))
                 {
                     List[i] = entity.Clone();
                     break;

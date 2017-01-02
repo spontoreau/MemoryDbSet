@@ -57,15 +57,13 @@ namespace MemoryDbSet
         {
             var property = GetIdProperty();
 
-            foreach(T e in List)
+            var entityToDelete = List.FirstOrDefault(e => property.GetValue(e).Equals(property.GetValue(entity)));
+            if (entityToDelete != null)
             {
-                if(property.GetValue(e) == property.GetValue(entity))
-                {
-                    List.Remove(e);
-                }
+                List.Remove(entityToDelete);
             }
 
-            return entity;
+            return entityToDelete;
         }
 
         public IEnumerator<T> GetEnumerator() => List.GetEnumerator();

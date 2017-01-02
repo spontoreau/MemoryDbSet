@@ -43,17 +43,30 @@ namespace MemoryDbSet.Tests
             });
         }
 
+        [Fact]
+        public void Delete_ShouldDeleteTheEntityWithTheSameId()
+        {
+            GivenADbSetWithEntities(new List<MyEntity>
+            {
+                new MyEntity {Value = "MyFirstValue"},
+                new MyEntity {Value = "MySecondValue"},
+                new MyEntity {Value = "MyThirdValue"}
+            });
+
+            var entityToRemove = InMemoryDbSet.AsQueryable().Single(x => x.Value == "MySecondValue");
+            InMemoryDbSet.Remove(entityToRemove);
+
+            ThenEntitiesShouldBe(new Collection<MyEntity>
+            {
+                new MyEntity {Id = 1, Value = "MyFirstValue"},
+                new MyEntity {Id = 3, Value = "MyThirdValue"}
+            });
+        }
+
         private void ThenEntitiesShouldBe(Collection<MyEntity> expectedEntities)
         {
             var actualEntities = InMemoryDbSet.AsEnumerable();
-
-            for (var entityId = 1; entityId < actualEntities.Count(); entityId++)
-            {
-                var actualEntity = actualEntities.Single(x => x.Id == entityId);
-                var expectedEntity = expectedEntities.Single(x => x.Id == entityId);
-
-                actualEntity.ShouldBeEquivalentTo(expectedEntity);
-            }
+            actualEntities.ShouldAllBeEquivalentTo(expectedEntities);
         }
 
         private void GivenADbSetWithEntities(IEnumerable<MyEntity> entities)
@@ -62,8 +75,6 @@ namespace MemoryDbSet.Tests
             {
                 InMemoryDbSet.Add(entity);
             }
-
-            return;
         }
     }
 }
